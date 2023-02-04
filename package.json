@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.3.2",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "pg": "^8.9.0",
@@ -20,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serverStart": "nodemon server/port.js"
+    "serverStart": "nodemon server/port.js",
+    "seed": "node server/db/seed.js"
   },
   "eslintConfig": {
     "extends": [
