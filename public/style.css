@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  flex-flow: row no-repeat;
+  justify-content: space-between;
+  background-color: gray;
+}
+
+.navbar-info {
+  display: flex;
+  flex-flow: row no-repeat;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.main-logo {}

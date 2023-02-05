@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/cars', {
-  logging: true,
+  logging: false,
 });
 
 const Driver = db.define('driver', {

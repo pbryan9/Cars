@@ -1,7 +1,8 @@
-const router = require("express").Router();
-const { Car, Driver, Team } = require("../db/model");
+const router = require('express').Router();
+const { Car, Driver, Team } = require('../db/model');
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  console.log('hello from /api/cars');
   try {
     const cars = await Car.findAll({
       include: [Driver, Team],
@@ -12,7 +13,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:carId", async (req, res, next) => {
+router.get('/:carId', async (req, res, next) => {
   try {
     const { carId } = req.params;
     const car = await Car.findByPk(carId, {
@@ -24,7 +25,7 @@ router.get("/:carId", async (req, res, next) => {
   }
 });
 
-router.put("/:carId", async (req, res, next) => {
+router.put('/:carId', async (req, res, next) => {
   try {
     const { carId } = req.params;
     const cars = await Car.findByPk(carId);
@@ -34,7 +35,7 @@ router.put("/:carId", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const car = await Car.create(req.body);
     res.sendStatus(201).json(car);
@@ -43,7 +44,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.delete("/:carId", async (req, res, next) => {
+router.delete('/:carId', async (req, res, next) => {
   try {
     const { carId } = req.params;
     const car = await Car.findByPk(carId);
