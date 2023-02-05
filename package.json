@@ -12,6 +12,7 @@
     "pg": "^8.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
     "sequelize": "^6.28.0",
     "web-vitals": "^2.1.4"
@@ -22,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serverStart": "nodemon server/port.js",
-    "seed": "node server/db/seed.js"
+    "seed": "node server/db/seed.js",
+    "build-watch": "webpack -w"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +43,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-react": "^7.18.6",
+    "install": "^0.13.0",
+    "npm": "^9.4.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
