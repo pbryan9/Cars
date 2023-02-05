@@ -6042,9 +6042,11 @@ function getTargetMatch(matches, location) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _components_Cars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Cars */ "./src/components/Cars.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Navbar */ "./src/components/Navbar.js");
+/* harmony import */ var _components_SingleCar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SingleCar */ "./src/components/SingleCar.js");
+
 
 
 
@@ -6054,9 +6056,12 @@ function App() {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: "app-main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
     path: "/cars",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Cars__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    path: "/cars/:id",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_SingleCar__WEBPACK_IMPORTED_MODULE_3__["default"], null)
   }))));
 }
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -6077,32 +6082,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_carSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/carSlice */ "./src/store/carSlice.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 
 
 
 
 function Cars() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_carSlice__WEBPACK_IMPORTED_MODULE_2__.fetchAllCars)());
   }, [dispatch]);
   const cars = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_carSlice__WEBPACK_IMPORTED_MODULE_2__.selectAllCars);
+  const handleClick = evt => {
+    navigate(`/cars/${evt.target.dataset.id}`);
+  };
   const renderedCars = cars.map(car => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: car.id,
       className: "car-card"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      src: "",
-      alt: "imgUrl"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-      to: `/cars/${car.id}`,
+      src: car.image,
+      alt: "carImage"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      type: "button",
+      "data-id": car.id,
+      onClick: handleClick,
       className: "car-card-info"
     }, "See car info"));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "main-container"
-  }, cars.length > 0 && renderedCars, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("article", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "car-container"
+  }, " ", cars.length > 0 && renderedCars, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("article", {
     className: "article"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt cumque sunt vitae, aut molestias officia harum esse facilis modi omnis tenetur ducimus mollitia blanditiis sit voluptates repellendus ratione recusandae. Facilis nam quae pariatur cupiditate! Voluptatem inventore nam vel facilis labore odio cumque quisquam qui quia cum, tempora quasi? Beatae numquam omnis natus quae, recusandae possimus, fuga sit vero quia tempore officiis eum architecto ullam, placeat consequatur laboriosam? Non minima tempore, ex fugit laborum minus ad natus veniam nihil iure facere ea obcaecati quasi quibusdam beatae iste voluptatum? Molestiae facere, incidunt voluptatum a iure quia, reprehenderit adipisci fugiat placeat quos consectetur maiores pariatur excepturi error eum autem possimus illum velit voluptas iste modi in. Beatae labore eligendi assumenda praesentium quasi dicta dolorum. Vitae quia molestias aspernatur facilis unde. Nostrum nam quod sed dolorem hic voluptatem ullam non et porro tempora atque quidem, minus delectus distinctio nisi ea esse omnis nemo possimus molestiae quo commodi vitae magni illo. Ipsam, itaque! Eius iste itaque velit odio, nostrum quo tempore obcaecati vero tempora voluptatibus et eaque dolore adipisci fugit aspernatur corporis. Nulla ducimus autem, nihil quis eligendi asperiores doloremque temporibus. Officia optio ullam error nisi tempore! Voluptatem, assumenda. Aut laborum corporis sed necessitatibus distinctio?"))));
 }
@@ -6121,6 +6134,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 
 
 function NavBar(props) {
@@ -6128,7 +6142,9 @@ function NavBar(props) {
     className: "nav-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "main-logo"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/cars"
+  }, "CARS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "navbar-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "navlinks"
@@ -6137,6 +6153,52 @@ function NavBar(props) {
   }, "CONTACT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "navlinks"
   }, "ABOUT")));
+}
+
+/***/ }),
+
+/***/ "./src/components/SingleCar.js":
+/*!*************************************!*\
+  !*** ./src/components/SingleCar.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ SingleCar; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _store_singleCarSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleCarSlice */ "./src/store/singleCarSlice.js");
+
+
+
+
+function SingleCar() {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const {
+    id
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_singleCarSlice__WEBPACK_IMPORTED_MODULE_2__.fetchSingleCar)(id));
+  }, [dispatch, id]);
+  const car = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_singleCarSlice__WEBPACK_IMPORTED_MODULE_2__.selectSingleCar);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "single-car-img"
+  }, car.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: car.image,
+    alt: "car"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "single-car-make"
+  }, car.make), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "single-car-model"
+  }, car.model), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "single-car-year"
+  }, car.year), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("article", {
+    className: "single-car-article"
+  }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut esse dignissimos ducimus reprehenderit tempora ipsam voluptatum consequatur officia facilis amet impedit est, voluptate eveniet mollitia dolorem eos fugiat, commodi quidem, animi rerum? Illum, dolorem nobis ipsa porro facere ut eius. Quam qui accusantium mollitia quisquam culpa id, autem cumque ullam quos temporibus facilis a necessitatibus! At voluptatibus odit voluptatem corporis amet, soluta sit quibusdam quas sequi cum? Voluptas fugiat in consequuntur molestiae, necessitatibus nesciunt nostrum ratione, quo sunt sit perspiciatis expedita. Suscipit hic nesciunt labore consequuntur ex, dolor fuga saepe maiores voluptas libero corrupti, temporibus enim asperiores cumque quia! Qui alias soluta dolores. Ipsam explicabo facilis tempore, alias molestiae eligendi minus maiores totam veritatis libero laboriosam iure iusto expedita architecto. Quae animi voluptatum eaque aperiam, ullam officia et ipsum autem rerum commodi repellendus fuga ab pariatur quasi, consectetur alias a laudantium incidunt, distinctio dolorem odio facere enim! Molestias, aliquid itaque."));
 }
 
 /***/ }),
@@ -6184,6 +6246,47 @@ const selectAllCars = state => state.cars;
 
 /***/ }),
 
+/***/ "./src/store/singleCarSlice.js":
+/*!*************************************!*\
+  !*** ./src/store/singleCarSlice.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchSingleCar": function() { return /* binding */ fetchSingleCar; },
+/* harmony export */   "selectSingleCar": function() { return /* binding */ selectSingleCar; }
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+
+
+const fetchSingleCar = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyncThunk)("singleCar/fetchSingleCar", async id => {
+  try {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(`/api/cars/${id}`);
+    return data;
+  } catch (err) {
+    console.error(`Trouble fetching car ${id}`, err.message);
+  }
+});
+const createSingleCarSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: "singleCar",
+  initialState: {},
+  extraReducers: builder => {
+    builder.addCase(fetchSingleCar.fulfilled, (state, {
+      payload
+    }) => {
+      return payload;
+    });
+  }
+});
+const selectSingleCar = state => state.singleCar;
+/* harmony default export */ __webpack_exports__["default"] = (createSingleCarSlice.reducer);
+
+/***/ }),
+
 /***/ "./src/store/store.js":
 /*!****************************!*\
   !*** ./src/store/store.js ***!
@@ -6191,13 +6294,16 @@ const selectAllCars = state => state.cars;
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var _carSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carSlice */ "./src/store/carSlice.js");
+/* harmony import */ var _singleCarSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./singleCarSlice */ "./src/store/singleCarSlice.js");
 
 
-const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
+
+const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.configureStore)({
   reducer: {
-    cars: _carSlice__WEBPACK_IMPORTED_MODULE_0__["default"]
+    cars: _carSlice__WEBPACK_IMPORTED_MODULE_0__["default"],
+    singleCar: _singleCarSlice__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);

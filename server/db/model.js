@@ -1,16 +1,16 @@
-const Sequelize = require('sequelize');
-const db = new Sequelize('postgres://localhost:5432/cars', {
+const Sequelize = require("sequelize");
+const db = new Sequelize("postgres://localhost:5432/cars", {
   logging: false,
 });
 
-const Driver = db.define('driver', {
+const Driver = db.define("driver", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 });
 
-const Car = db.define('car', {
+const Car = db.define("car", {
   make: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -19,9 +19,17 @@ const Car = db.define('car', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  year: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  image: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 
-const Team = db.define('team', {
+const Team = db.define("team", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,

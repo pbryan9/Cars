@@ -1,32 +1,36 @@
-const { db, Car, Driver, Team } = require('./model');
+const { db, Car, Driver, Team } = require("./model");
 
 const syncAndSeed = async () => {
   await db.sync({ force: true });
 
   const team1 = await Team.create({
-    name: 'BestTeam',
+    name: "BestTeam",
   });
 
   const driver1 = await Driver.create({
-    name: 'Patric',
+    name: "Patric",
   });
 
   driver1.setTeam(team1);
 
   const driver2 = await Driver.create({
-    name: 'Anastasia',
+    name: "Anastasia",
   });
 
   driver2.setTeam(team1);
 
   const car1 = await Car.create({
-    make: 'Ford',
-    model: 'Mustang',
+    make: "Ford",
+    model: "Mustang",
+    year: 1968,
+    image: "/img/car1.jpg",
   });
 
   const car2 = await Car.create({
-    make: 'Shelby',
-    model: 'Cobra',
+    make: "Shelby",
+    model: "Cobra",
+    year: 1988,
+    image: "/img/car2.jpg",
   });
 
   await car1.setDriver(driver2);
@@ -36,7 +40,7 @@ const syncAndSeed = async () => {
 
   await db.sync();
 
-  console.log('Seeding successful');
+  console.log("Seeding successful");
 };
 
 (async () => {

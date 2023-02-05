@@ -1,24 +1,33 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllCars, selectAllCars } from '../store/carSlice';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllCars, selectAllCars } from "../store/carSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Cars() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchAllCars());
   }, [dispatch]);
 
   const cars = useSelector(selectAllCars);
 
+  const handleClick = (evt) => {
+    navigate(`/cars/${evt.target.dataset.id}`);
+  };
+
   const renderedCars = cars.map((car) => {
     return (
       <div key={car.id} className="car-card">
-        <img src="" alt="imgUrl" />
-        <Link to={`/cars/${car.id}`} className="car-card-info">
+        <img src={car.image} alt="carImage" />
+        <button
+          type="button"
+          data-id={car.id}
+          onClick={handleClick}
+          className="car-card-info"
+        >
           See car info
-        </Link>
+        </button>
       </div>
     );
   });
@@ -26,7 +35,7 @@ export default function Cars() {
   return (
     <div>
       <div className="main-container">
-        {cars.length > 0 && renderedCars}
+        <div className="car-container"> {cars.length > 0 && renderedCars} </div>
         <article className="article">
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt
