@@ -14,6 +14,7 @@ export default function Messages(props) {
 
   return (
     <div className="messages-container">
+      <Link to="/messages/new">New Post...</Link>
       {messages &&
         messages.length > 0 &&
         messages.map((message) => {

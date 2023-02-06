@@ -3,6 +3,7 @@ import carSliceReducer from './carSlice';
 import singleCarReducer from './singleCarSlice';
 import allMessagesReducer from './messagesSlice';
 import singleMessageReducer from './singleMessageSlice';
+import allDriversReducer from './driverSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     singleCar: singleCarReducer,
     allMessages: allMessagesReducer,
     singleMessage: singleMessageReducer,
+    drivers: allDriversReducer,
   },
 });
 

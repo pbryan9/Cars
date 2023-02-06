@@ -4,7 +4,6 @@ import axios from 'axios';
 const fetchAllCars = createAsyncThunk('cars/fetchAllCars', async () => {
   try {
     const { data } = await axios.get('/api/cars');
-    console.log('data returned from backend:', data);
     return data;
   } catch (err) {
     console.error('Trouble fetching all cars: ', err.message);

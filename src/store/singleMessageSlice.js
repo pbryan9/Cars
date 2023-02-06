@@ -18,6 +18,7 @@ export const createSingleMessage = createAsyncThunk(
   async (messagePayload) => {
     try {
       const { data } = await axios.post('/api/messages', messagePayload);
+      return data;
     } catch (err) {
       console.error('Trouble posting single message: ', err.message);
     }
@@ -44,9 +45,13 @@ const singleMessageSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSingleMessage.fulfilled, (state, { payload }) => {
-      return payload;
-    });
+    builder
+      .addCase(fetchSingleMessage.fulfilled, (state, { payload }) => {
+        return payload;
+      })
+      .addCase(createSingleMessage.fulfilled, (state, { payload }) => {
+        return payload;
+      });
   },
 });
 

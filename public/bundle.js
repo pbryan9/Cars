@@ -6042,12 +6042,14 @@ function getTargetMatch(matches, location) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _components_Cars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Cars */ "./src/components/Cars.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Navbar */ "./src/components/Navbar.js");
 /* harmony import */ var _components_SingleCar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SingleCar */ "./src/components/SingleCar.js");
 /* harmony import */ var _components_SingleMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/SingleMessage */ "./src/components/SingleMessage.js");
 /* harmony import */ var _components_Messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Messages */ "./src/components/Messages.js");
+/* harmony import */ var _components_CreatePost__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CreatePost */ "./src/components/CreatePost.js");
+
 
 
 
@@ -6060,18 +6062,21 @@ function App() {
     className: "App"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: "app-main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/cars",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Cars__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/cars/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_SingleCar__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/messages",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Messages__WEBPACK_IMPORTED_MODULE_5__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/messages/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    path: "/messages/new",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_CreatePost__WEBPACK_IMPORTED_MODULE_6__["default"], null)
   }))));
 }
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -6132,6 +6137,97 @@ function Cars() {
 
 /***/ }),
 
+/***/ "./src/components/CreatePost.js":
+/*!**************************************!*\
+  !*** ./src/components/CreatePost.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ CreatePost; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_driverSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/driverSlice */ "./src/store/driverSlice.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _store_singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/singleMessageSlice */ "./src/store/singleMessageSlice.js");
+/* harmony import */ var _store_messagesSlice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/messagesSlice */ "./src/store/messagesSlice.js");
+
+
+
+
+
+
+function CreatePost(props) {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  const [postTitle, setPostTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [postContent, setPostContent] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [driver, setDriver] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_driverSlice__WEBPACK_IMPORTED_MODULE_1__.fetchAllDrivers)());
+  }, [dispatch]);
+  const drivers = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_driverSlice__WEBPACK_IMPORTED_MODULE_1__.selectAllDrivers);
+  async function submitHandler(event) {
+    event.preventDefault();
+    const messagePayload = {
+      driverId: driver,
+      title: postTitle,
+      content: postContent
+    };
+    await dispatch((0,_store_singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__.createSingleMessage)(messagePayload));
+    await dispatch((0,_store_singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__.clearSingleMessage)());
+    await dispatch((0,_store_messagesSlice__WEBPACK_IMPORTED_MODULE_4__.fetchAllMessages)());
+    setPostTitle('');
+    setPostContent('');
+    navigate('/messages');
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "New Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    action: "",
+    onSubmit: submitHandler
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "title"
+  }, "Post Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    id: "title",
+    name: "title",
+    value: postTitle,
+    onChange: e => setPostTitle(e.target.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "author"
+  }, "By:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+    name: "driverId",
+    id: "author",
+    value: driver,
+    onInput: e => setDriver(e.target.value)
+  }, drivers.length > 0 && drivers.map(driver => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+      key: driver.id,
+      value: driver.id
+    }, driver.name);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "post-content"
+  }, "Your post:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+    name: "content",
+    value: postContent,
+    onChange: e => {
+      setPostContent(e.target.value);
+    },
+    id: "post-content",
+    cols: "50",
+    rows: "15"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "submit"
+  }, "Submit Post")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    to: "/messages"
+  }, "Cancel"));
+}
+
+/***/ }),
+
 /***/ "./src/components/Messages.js":
 /*!************************************!*\
   !*** ./src/components/Messages.js ***!
@@ -6159,7 +6255,9 @@ function Messages(props) {
   const messages = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_messagesSlice__WEBPACK_IMPORTED_MODULE_2__.selectAllMessages);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "messages-container"
-  }, messages && messages.length > 0 && messages.map(message => {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/messages/new"
+  }, "New Post..."), messages && messages.length > 0 && messages.map(message => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: message.id,
       className: "message-wrapper"
@@ -6321,7 +6419,6 @@ const fetchAllCars = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyn
     const {
       data
     } = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/api/cars');
-    console.log('data returned from backend:', data);
     return data;
   } catch (err) {
     console.error('Trouble fetching all cars: ', err.message);
@@ -6341,6 +6438,47 @@ const carSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
 const selectAllCars = state => state.cars;
 /* harmony default export */ __webpack_exports__["default"] = (carSlice.reducer);
 
+
+/***/ }),
+
+/***/ "./src/store/driverSlice.js":
+/*!**********************************!*\
+  !*** ./src/store/driverSlice.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchAllDrivers": function() { return /* binding */ fetchAllDrivers; },
+/* harmony export */   "selectAllDrivers": function() { return /* binding */ selectAllDrivers; }
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+
+
+const fetchAllDrivers = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAsyncThunk)('drivers/fetchAllDrivers', async () => {
+  try {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/api/drivers');
+    return data;
+  } catch (err) {
+    console.error('Trouble fetching all drivers:', err.message);
+  }
+});
+const allDriversSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: 'drivers',
+  initialState: [],
+  extraReducers: builder => {
+    builder.addCase(fetchAllDrivers.fulfilled, (state, {
+      payload
+    }) => {
+      return payload;
+    });
+  }
+});
+const selectAllDrivers = state => state.drivers;
+/* harmony default export */ __webpack_exports__["default"] = (allDriversSlice.reducer);
 
 /***/ }),
 
@@ -6459,6 +6597,7 @@ const createSingleMessage = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.cre
     const {
       data
     } = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('/api/messages', messagePayload);
+    return data;
   } catch (err) {
     console.error('Trouble posting single message: ', err.message);
   }
@@ -6483,6 +6622,10 @@ const singleMessageSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.crea
       payload
     }) => {
       return payload;
+    }).addCase(createSingleMessage.fulfilled, (state, {
+      payload
+    }) => {
+      return payload;
     });
   }
 });
@@ -6501,22 +6644,25 @@ const {
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var _carSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carSlice */ "./src/store/carSlice.js");
 /* harmony import */ var _singleCarSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./singleCarSlice */ "./src/store/singleCarSlice.js");
 /* harmony import */ var _messagesSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./messagesSlice */ "./src/store/messagesSlice.js");
 /* harmony import */ var _singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./singleMessageSlice */ "./src/store/singleMessageSlice.js");
+/* harmony import */ var _driverSlice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./driverSlice */ "./src/store/driverSlice.js");
 
 
 
 
 
-const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.configureStore)({
+
+const store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_5__.configureStore)({
   reducer: {
     cars: _carSlice__WEBPACK_IMPORTED_MODULE_0__["default"],
     singleCar: _singleCarSlice__WEBPACK_IMPORTED_MODULE_1__["default"],
     allMessages: _messagesSlice__WEBPACK_IMPORTED_MODULE_2__["default"],
-    singleMessage: _singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__["default"]
+    singleMessage: _singleMessageSlice__WEBPACK_IMPORTED_MODULE_3__["default"],
+    drivers: _driverSlice__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
